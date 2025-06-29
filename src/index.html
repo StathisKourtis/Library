@@ -8,7 +8,35 @@
     <script defer src="./code.js"></script>
   </head>
 
-  <body class="container">
-    <div class="size-60 border-1 border-amber-950 bg-amber-100"></div>
+  <body class="grid h-screen grid-cols-[1fr_8fr]">
+    <div id="sidebar" class="p-5 h-full bg-gray-400 grid grid-rows-[auto_1fr] justify-items-center">
+      <button
+        class=" openform h-10 w-10 self-center hover:text-amber-100"
+      > <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <title>plus-circle</title>
+        <path
+          d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+        /></button>
+     
+      </svg>
+    </div>
+    <div
+      id="app"
+      class="container bg-amber-50 p-15 flex flex-wrap gap-5"
+    >
+    <div> </div>
+  </div>
+      <dialog class="dialog rounded-3xl bg-white border-1 border-black absolute self-center justify-self-center p-10">
+        <form id="addbookform" action="" class="grid grid-cols-2 grid-rows-4">
+          <label for="title">Title</label><input placeholder="Lord of the Rings" id="title" name="title" type="text">
+          <label for="author">Author</label><input placeholder="J.R.R. Tolkien" id="author" name="author" type="text">
+          <label for="pages">Pages</label><input placeholder="1137" id="pages" name="pages" type="text">
+          <label for="haveRead">Have you read it?</label><input class="justify-self-start" name="haveRead" id="haveRead" type="checkbox">
+          <button id="addbook" type="submit" class="bg-black mt-10 rounded-3xl text-white font-semibold">
+            Add Book
+          </button>
+        </form>
+      </dialog>
+
   </body>
 </html>
