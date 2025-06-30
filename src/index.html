@@ -8,10 +8,11 @@
     <script defer src="./code.js"></script>
   </head>
 
-  <body class="grid h-screen grid-cols-[1fr_8fr]">
-    <div id="sidebar" class="p-5 h-full bg-gray-400 grid grid-rows-[auto_1fr] justify-items-center">
+  <body class="box-border grid h-screen grid-cols-[minmax(82px,150px)_1fr] text-[var(--color-backround)] font-semibold">
+    <div id="sidebar" class="p-5 bg-[var(--color-main)] grid grid-rows-[auto_1fr] justify-items-center">
+      
       <button
-        class=" openform h-10 w-10 self-center hover:text-amber-100"
+        class="openform h-10 w-10 self-center text-[var(--color-backround)] hover:text-[var(--color-text)]"
       > <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
         <title>plus-circle</title>
         <path
@@ -19,13 +20,6 @@
         /></button>
      
       </svg>
-    </div>
-    <div
-      id="app"
-      class="container bg-amber-50 p-15 flex flex-wrap gap-5"
-    >
-    <div> </div>
-  </div>
       <dialog class="dialog rounded-3xl bg-white border-1 border-black absolute self-center justify-self-center p-10">
         <form id="addbookform" action="" class="grid grid-cols-2 grid-rows-4">
           <label for="title">Title</label><input placeholder="Lord of the Rings" id="title" name="title" type="text">
@@ -37,6 +31,13 @@
           </button>
         </form>
       </dialog>
+    </div>
+    <div
+      id="app"
+      class="container bg-[var(--color-backround)] p-15 min-w-screen flex flex-wrap gap-5 "
+    >
+  </div>
+      
 
   </body>
 </html>

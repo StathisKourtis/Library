@@ -1,5 +1,5 @@
 const closeSvg =
-  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>alpha-x-circle</title><path d="M9,7L11,12L9,17H11L12,14.5L13,17H15L13,12L15,7H13L12,9.5L11,7H9M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2Z" /></svg>';
+  '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><title>alpha-x-circle</title><path d="M9,7L11,12L9,17H11L12,14.5L13,17H15L13,12L15,7H13L12,9.5L11,7H9M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2Z" /></svg>';
 
 const myLibrary = [];
 const container = document.querySelector(".container");
@@ -24,39 +24,72 @@ function clearForm() {
 function buildLibrary() {
   clearLibrary();
   for (let i = 0; i < myLibrary.length; i++) {
-    myLibrary[i] = document.createElement("div");
-    container.appendChild(myLibrary[i]);
-    myLibrary[i].classList.add(
+    const card = document.createElement("div");
+    container.appendChild(card);
+    card.classList.add(
       "size-60",
       "border-1",
       "border-amber-950",
-      "bg-amber-100",
+      "bg-[var(--color-main)]",
       "rounded-3xl",
       "p-4",
+      "grid",
+      "shadow-xl",
+      "grid-cols-1",
+      "grid-rows-4",
     );
     let tittle = document.createElement("div");
-    myLibrary[i].appendChild(tittle);
+    card.appendChild(tittle);
     tittle.textContent = "Title: " + myLibrary[i].title;
     let arthor = document.createElement("div");
-    myLibrary[i].appendChild(arthor);
+    card.appendChild(arthor);
     arthor.textContent = "Arthor: " + myLibrary[i].arthor;
     let pages = document.createElement("div");
-    myLibrary[i].appendChild(pages);
+    card.appendChild(pages);
     pages.textContent = "Pages: " + myLibrary[i].pages;
+    let readContainer = document.createElement("div");
+    card.appendChild(readContainer);
+    readContainer.classList.add("flex", "self-start");
     let read = document.createElement("div");
-    myLibrary[i].appendChild(read);
+    readContainer.appendChild(read);
     if (myLibrary[i].haveRead) {
       read.textContent = "Read";
     } else {
       read.textContent = "Not Read";
     }
-    myLibrary[i].insertAdjacentHTML("beforeend", closeSvg);
-    const close = myLibrary[i].lastElementChild;
-    close.classList.add("h-7", "w-7");
+    readContainer.insertAdjacentHTML(
+      "beforeend",
+      '<input name="haveRead" id="haveRead" type="checkbox">',
+    );
+    let readCheck = readContainer.lastElementChild;
+    readCheck.classList.add("ml-4");
+    if (myLibrary[i].haveRead == true) {
+      readCheck.checked = true;
+    } else {
+      readCheck.checked = false;
+    }
+    readCheck.addEventListener("input", () => {
+      if (myLibrary[i].haveRead == true) {
+        myLibrary[i].haveRead = false;
+        buildLibrary();
+      } else {
+        myLibrary[i].haveRead = true;
+        buildLibrary();
+      }
+    });
+
+    card.insertAdjacentHTML("beforeend", closeSvg);
+    const close = card.lastElementChild;
+    close.classList.add(
+      "h-7",
+      "w-7",
+      "text-[var(--color-backround)]",
+      "hover:text-[var(--color-text)]",
+    );
     close.addEventListener("click", () => {
       console.log(i);
       console.log(myLibrary[i]);
-      myLibrary[i].remove();
+      card.remove();
       myLibrary.splice(i, 1);
       buildLibrary();
       console.log(card);
